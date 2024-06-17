@@ -29,7 +29,7 @@ export default async function History() {
 								<CardHeader>
 									<CardTitle>
 										<div className='flex w-full items-center justify-between'>
-											{prompt.prompt}
+											{prompt.model} - {prompt.result}
 											<DeleteHistoryButton
 												id={prompt.id}
 											/>
@@ -39,22 +39,9 @@ export default async function History() {
 										{prompt.createdAt.toLocaleDateString()}
 									</CardDescription>
 								</CardHeader>
-								<CardContent>{prompt.result}</CardContent>
+								<CardContent>{prompt.prompt}</CardContent>
 							</Card>
 						</div>
-						// <div  className='flex flex-col gap-2'>
-						// 	<div className='flex flex-col gap-1'>
-						// 		<span className='text-lg font-bold'>
-						// 			{prompt.prompt}
-						// 		</span>
-						// 		<span className='text-sm'>{prompt.result}</span>
-						// 	</div>
-						// 	<div className='flex flex-col gap-1'>
-						// 		<span className='text-sm'>
-						// 			{prompt.createdAt.toLocaleDateString()}
-						// 		</span>
-						// 	</div>
-						// </div>
 					))}
 				</ScrollArea>
 			</div>

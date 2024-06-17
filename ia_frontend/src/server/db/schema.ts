@@ -17,6 +17,7 @@ export const history = createTable('history', {
 	id: uuid('id').primaryKey().defaultRandom().notNull(),
 	prompt: text('prompt').notNull(),
 	result: varchar('result', { length: 255 }).notNull(),
+	model: varchar('model', { length: 255 }).notNull(),
 	createdAt: timestamp('createdAt').defaultNow().notNull(),
 	userId: varchar('userId', { length: 255 })
 		.references(() => users.id, {

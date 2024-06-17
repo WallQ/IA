@@ -5,13 +5,20 @@ import { z } from 'zod';
 
 export const promptRouter = createTRPCRouter({
 	create: protectedProcedure
-		.input(z.object({ prompt: z.string(), result: z.string() }))
+		.input(
+			z.object({
+				prompt: z.string(),
+				result: z.string(),
+				model: z.string(),
+			}),
+		)
 		.mutation(async ({ ctx, input }) => {
 			await ctx.db
 				.insert(history)
 				.values({
 					prompt: input.prompt,
 					result: input.result,
+					model: input.model,
 					createdAt: new Date(),
 					userId: ctx.session.user.id,
 				})

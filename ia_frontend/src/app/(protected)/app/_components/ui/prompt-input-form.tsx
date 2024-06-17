@@ -1,12 +1,12 @@
 'use client';
 
-import { Fragment } from 'react';
 import { useModelStore } from '@/stores/model';
 import { usePromptStore } from '@/stores/prompts';
 import { api } from '@/trpc/react';
 import { PromptInputSchema, type PromptInput } from '@/validators/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
+import { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
@@ -61,9 +61,8 @@ const PromptInputForm: React.FunctionComponent = (): React.ReactNode => {
 
 			createPrompt.mutate({
 				prompt: data.prompt,
-				result: result.spam
-					? 'The message you entered is likely spam.'
-					: ' The message you entered is likely not spam.',
+				result: result.spam ? 'Spam' : 'Non-spam',
+				model: selectedModel?.name ?? 'Unknown',
 			});
 
 			setResult(
